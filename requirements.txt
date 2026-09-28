@@ -1,0 +1,6 @@
+# Azure Functions + ETL Anura -> SQL
+azure-functions
+requests
+pandas
+sqlalchemy
+pyodbc
