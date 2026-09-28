@@ -65,8 +65,29 @@ py -u -m cli.importar_anura
 ```
 
 Salida esperada: tablero con `LLAMADAS AGREGADAS` y `ERRORES: 0`.
-Para producción, programarlo (Task Scheduler / cron) cada 15–60 min; cada
-corrida posterior es incremental y liviana.
+Para producción podés usar **Azure Function** (ver abajo) o programarlo
+(Task Scheduler / cron) cada 15–60 min; cada corrida posterior es incremental
+y liviana.
+
+## Azure Function (timer)
+
+El repo también corre como **Azure Function** (Python v2), sin `.env`:
+
+* `function_app.py` — timer `0 0 * * * *` (cada hora) que llama al ETL
+  (`etl.dominios.anura.importar.main`).
+* `host.json` — configuración del runtime.
+* `requirements.txt` — dependencias del deployment.
+* `config/settings.py` — en Azure lee las variables de **Application settings**
+  (`CLIENT_ID`, `CLIENT_PASSWORD`, `SQL_*`), no un `.env`.
+* `.funcignore` — excluye del deploy lo que no corresponde (`.env`, tests, etc.).
+
+Deploy:
+
+```
+func azure functionapp publish <FUNCION_APP>
+```
+
+Requiere el **ODBC Driver 18 for SQL Server** instalado en el host.
 
 ## Configuración (`.env`)
 
@@ -81,8 +102,11 @@ Al importar, si falta alguna el proceso aborta con mensaje claro (fail-fast).
 ## Estructura
 
 ```
+function_app.py              # Azure Function (timer horario) -> ETL Anura
+host.json                    # config del runtime de Functions
+requirements.txt             # dependencias del deployment
 cli/importar_anura.py        # entrypoint: python -m cli.importar_anura
-config/settings.py           # lee .env + valida requeridas
+config/settings.py           # lee .env (local) o Application settings (Azure)
 etl/conn/anura_client.py     # OAuth + descarga CSV (timeout/retry)
 etl/conn/db.py               # engine SQLAlchemy/pyodbc
 etl/dominios/anura/importar.py  # ETL pandas → A_Llamada
