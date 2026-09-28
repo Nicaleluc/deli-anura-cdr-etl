@@ -1,0 +1,23 @@
+# Secrets
+.env
+.env.*
+!.env.template
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+deli-anura-cdr-etl.egg-info/
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
