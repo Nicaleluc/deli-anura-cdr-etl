@@ -4,7 +4,7 @@ Azure Function timer para deli-anura-cdr-etl.
 Schedule: cada 1 hora en minuto 0 -> NCRONTAB "0 0 * * * *"
 Equivale al CLI: python -m cli.importar_anura
 
-Deploy: subir todo el repo como root de la Function App cau-admin.
+Deploy: subir todo el repo como root de la Function App (Linux, Python v2).
 Env vars se configuran en Configuration > Application settings (no usa .env en Azure).
   CLIENT_ID, CLIENT_PASSWORD, SQL_SERVER, SQL_DATABASE, SQL_USERNAME, SQL_PASSWORD
 """

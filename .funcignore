@@ -1,0 +1,17 @@
+# Archivos que NO se suben al deploy de la Function App.
+.git/
+.github/
+.gitignore
+.gitattributes
+.env
+.env.*
+.venv/
+venv/
+.venv*/
+__pycache__/
+**/__pycache__/
+*.pyc
+*.egg-info/
+tests/
+*.md
+!README.md
