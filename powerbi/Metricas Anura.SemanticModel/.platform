@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Metricas Anura"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "0ca34b02-85ff-4443-84d9-734f56c0659e"
+  }
+}

@@ -1,0 +1,212 @@
+table V_A_PerdidaRacha
+	lineageTag: 1342150a6bb74c819ba49f99c14fd5c4
+
+	measure Rachas = COUNTROWS(V_A_PerdidaRacha)
+		formatString: 0
+		lineageTag: 142a817f2995476c91fc214431e019f9
+
+	measure 'Llamadas en racha' = SUM(V_A_PerdidaRacha[Cantidad])
+		formatString: 0
+		lineageTag: 740db1d67ab941dab5d0a56a13fde5e0
+
+	measure '% Devueltas racha' = DIVIDE(CALCULATE(COUNTROWS(V_A_PerdidaRacha), V_A_PerdidaRacha[Devuelta] = "Si"), [Rachas])
+		formatString: #0%
+		lineageTag: 1241206a94c04755a90a1434685b954f
+
+	column RachaId
+		dataType: string
+		lineageTag: cc8b1df5e35f40888df865b6611415eb
+		summarizeBy: none
+		sourceColumn: RachaId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Telefono
+		dataType: string
+		lineageTag: 7c4291d107104e5db1f3dd97a91e7a78
+		summarizeBy: none
+		sourceColumn: Telefono
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cliente
+		dataType: string
+		lineageTag: 6c22c2fe57334100b43606aef9a03841
+		summarizeBy: none
+		sourceColumn: Cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column HoraTxt
+		dataType: string
+		lineageTag: 06aa3df5f58f4e6e95c5e9744565c238
+		summarizeBy: none
+		sourceColumn: HoraTxt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Turno
+		dataType: string
+		lineageTag: 919ceb62bf5846f0b850c4dccc1bbe85
+		summarizeBy: none
+		sourceColumn: Turno
+
+		annotation SummarizationSetBy = Automatic
+
+	column Resultado
+		dataType: string
+		lineageTag: 1c25568d866f4018a1e9dcea3e3b3624
+		summarizeBy: none
+		sourceColumn: Resultado
+
+		annotation SummarizationSetBy = Automatic
+
+	column DejoMensaje
+		dataType: string
+		lineageTag: f824def40fdb4a13836a1cc51595a7e7
+		summarizeBy: none
+		sourceColumn: DejoMensaje
+
+		annotation SummarizationSetBy = Automatic
+
+	column Devuelta
+		dataType: string
+		lineageTag: 39993e3dd53e40f5909a639c901fc297
+		summarizeBy: none
+		sourceColumn: Devuelta
+
+		annotation SummarizationSetBy = Automatic
+
+	column TipoDevuelve
+		dataType: string
+		lineageTag: 7447bb2aa667460aa3c1cb5e577b2777
+		summarizeBy: none
+		sourceColumn: TipoDevuelve
+
+		annotation SummarizationSetBy = Automatic
+
+	column TecDevuelve
+		dataType: string
+		lineageTag: 73541be535434dcd87aaf0f8d1413983
+		summarizeBy: none
+		sourceColumn: TecDevuelve
+
+		annotation SummarizationSetBy = Automatic
+
+	column ConfDevuelve
+		dataType: string
+		lineageTag: 5aa92a8a8f01445da36ab8238389f8f5
+		summarizeBy: none
+		sourceColumn: ConfDevuelve
+
+		annotation SummarizationSetBy = Automatic
+
+	column CuentaDevuelve
+		dataType: string
+		lineageTag: 56b83ca56d114abbb4418f8ef130b5a2
+		summarizeBy: none
+		sourceColumn: CuentaDevuelve
+
+		annotation SummarizationSetBy = Automatic
+
+	column TerminalDevuelve
+		dataType: string
+		lineageTag: b4240c2a20454a8f92f7f0624cf00cc5
+		summarizeBy: none
+		sourceColumn: TerminalDevuelve
+
+		annotation SummarizationSetBy = Automatic
+
+	column TecnicosTurno
+		dataType: string
+		lineageTag: 22c075a2599e406cad1f959c2578c575
+		summarizeBy: none
+		sourceColumn: TecnicosTurno
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dia
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 080811a1e8344d1790920bfd4bbd2134
+		summarizeBy: none
+		sourceColumn: Dia
+
+		annotation SummarizationSetBy = Automatic
+
+	column PrimeraFecha
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5227d78de77f467985ee69d6fc7ca746
+		summarizeBy: none
+		sourceColumn: PrimeraFecha
+
+		annotation SummarizationSetBy = Automatic
+
+	column UltimaFecha
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7780fe730873422bba34f3e64825db82
+		summarizeBy: none
+		sourceColumn: UltimaFecha
+
+		annotation SummarizationSetBy = Automatic
+
+	column FechaDevuelta
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 51c6eafec92045bca895b93321825b3b
+		summarizeBy: none
+		sourceColumn: FechaDevuelta
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hora
+		dataType: int64
+		formatString: 0
+		lineageTag: d7c97740f65e432fbd818c55c5e0175e
+		summarizeBy: none
+		sourceColumn: Hora
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cantidad
+		dataType: int64
+		formatString: 0
+		lineageTag: 5353c10374ec4fe8bfe165ce28934940
+		summarizeBy: none
+		sourceColumn: Cantidad
+
+		annotation SummarizationSetBy = Automatic
+
+	column N_TecnicosTurno
+		dataType: int64
+		formatString: 0
+		lineageTag: 78a2ba31957045c59202a93a76654963
+		summarizeBy: none
+		sourceColumn: N_TecnicosTurno
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiaFecha
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: d9570455946d4b2aacd1a41908ba6e24
+		summarizeBy: none
+		sourceColumn: Dia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition V_A_PerdidaRacha = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Database("tu-servidor.database.windows.net", "tu-base"),
+				    dbo_V = Origen{[Schema="dbo",Item="V_A_PerdidaRacha"]}[Data]
+				in
+				    dbo_V
+
+		annotation PBI_ResultType = Table
+

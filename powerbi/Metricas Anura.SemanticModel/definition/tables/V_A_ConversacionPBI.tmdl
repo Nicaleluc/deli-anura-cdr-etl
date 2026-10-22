@@ -1,0 +1,411 @@
+table V_A_ConversacionPBI
+	lineageTag: bfed2c1f6a0150ae98d1a80ee9c08ab4
+
+	measure Llamadas = CALCULATE(COUNTROWS(V_A_ConversacionPBI), V_A_ConversacionPBI[EsBuzon] <> "SI")
+		formatString: 0
+		lineageTag: b03ff642474e56949d86ab7c0c6d7a1e
+
+	measure Minutos = DIVIDE(CALCULATE(SUM(V_A_ConversacionPBI[DuracionSeg]), V_A_ConversacionPBI[EsBuzon] <> "SI"), 60)
+		formatString: #,##0
+		lineageTag: 7effa81c904052d39edfd9c9b71c5853
+
+	measure 'Seg Habla Tec' = CALCULATE(SUM(V_A_ConversacionPBI[SegTec]), V_A_ConversacionPBI[EsBuzon] <> "SI")
+		formatString: #,##0
+		lineageTag: 62d0c4f1112c55e18acfa6fcaefa6202
+
+	measure 'Seg Habla Cli' = CALCULATE(SUM(V_A_ConversacionPBI[SegCli]), V_A_ConversacionPBI[EsBuzon] <> "SI")
+		formatString: #,##0
+		lineageTag: 791acc5624ee5d47b910c6f318fd7a44
+
+	measure 'Dur Minima' = MIN(V_A_ConversacionPBI[DuracionSeg])
+		formatString: 0
+		lineageTag: e3dbbf6142e35fd0b0b507f768a2b047
+
+	measure 'Dur P25' = PERCENTILE.INC(V_A_ConversacionPBI[DuracionSeg], 0.25)
+		formatString: 0
+		lineageTag: 1adf54f6ef9f58668b41b8d6cee10255
+
+	measure 'Dur Mediana' = MEDIAN(V_A_ConversacionPBI[DuracionSeg])
+		formatString: 0
+		lineageTag: c829c6f352b459f2be505b8656491b91
+
+	measure 'Dur P75' = PERCENTILE.INC(V_A_ConversacionPBI[DuracionSeg], 0.75)
+		formatString: 0
+		lineageTag: 838ec352c95a551cb06e2f8ead576322
+
+	measure 'Dur Maxima' = MAX(V_A_ConversacionPBI[DuracionSeg])
+		formatString: 0
+		lineageTag: 35142377b4115f598879f492cb245918
+
+	measure ALTA = CALCULATE(COUNTROWS(V_A_ConversacionPBI), V_A_ConversacionPBI[Confianza] = "ALTA")
+		formatString: 0
+		lineageTag: ec76b35a2927536492eb63a0dde84335
+
+	measure '% ALTA' = DIVIDE([ALTA], [Llamadas])
+		formatString: #0%
+		lineageTag: 433546c5c8f75eddb413e9de3e33d252
+
+	measure Desconocidas = CALCULATE(COUNTROWS(V_A_ConversacionPBI), V_A_ConversacionPBI[Tecnico] = "desconocido")
+		formatString: 0
+		lineageTag: bc1e5bfeee045d318aa55c14fd3a0f27
+
+	measure 'Llamadas s/buzon' = CALCULATE(COUNTROWS(V_A_ConversacionPBI), V_A_ConversacionPBI[EsBuzon] <> "SI")
+		formatString: 0
+		lineageTag: 0b83ba63aa9f5ea8bd168ba923207245
+
+	measure 'Dur Minima s/buzon' = CALCULATE(MIN(V_A_ConversacionPBI[DuracionSeg]), V_A_ConversacionPBI[EsBuzon] <> "SI")
+		formatString: 0
+		lineageTag: 7c78398fadce5b539a422d1a2538db68
+
+	measure 'Dur P25 s/buzon' = CALCULATE(PERCENTILE.INC(V_A_ConversacionPBI[DuracionSeg], 0.25), V_A_ConversacionPBI[EsBuzon] <> "SI")
+		formatString: 0
+		lineageTag: 3b8ba1856d6850389544329f585c61f8
+
+	measure 'Dur Mediana s/buzon' = CALCULATE(MEDIAN(V_A_ConversacionPBI[DuracionSeg]), V_A_ConversacionPBI[EsBuzon] <> "SI")
+		formatString: 0
+		lineageTag: 5dd391c1ede9564bbc9590998d33ee5c
+
+	measure 'Dur P75 s/buzon' = CALCULATE(PERCENTILE.INC(V_A_ConversacionPBI[DuracionSeg], 0.75), V_A_ConversacionPBI[EsBuzon] <> "SI")
+		formatString: 0
+		lineageTag: f9df94052c025684b6d656c218c62c7b
+
+	measure 'Dur Maxima s/buzon' = CALCULATE(MAX(V_A_ConversacionPBI[DuracionSeg]), V_A_ConversacionPBI[EsBuzon] <> "SI")
+		formatString: 0
+		lineageTag: 0196e4c71e5355a09743cd3d38bea611
+
+	measure 'Total Día' = CALCULATE([Llamadas], REMOVEFILTERS(V_A_ConversacionPBI[Turno]))
+		formatString: 0
+		lineageTag: fdc559192a215f8897785ebd4b230029
+
+	measure 'Total Llamadas' = CALCULATE([Llamadas], REMOVEFILTERS(V_A_ConversacionPBI[Turno]))
+		formatString: 0
+		lineageTag: 30ef91de-d26b-4cd6-a7c9-3bdf0e5521a7
+
+	measure 'Total Minutos' = CALCULATE([Minutos], REMOVEFILTERS(V_A_ConversacionPBI[Turno]))
+		formatString: #,##0
+		lineageTag: 54cf3438-9176-4de3-ba2f-61ff89176f1c
+
+	column Id
+		dataType: int64
+		formatString: 0
+		lineageTag: e8d1198e563551f09cb098d300dbe024
+		summarizeBy: count
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column CdrId
+		dataType: int64
+		lineageTag: a87e3200fba55c9e81305ab87cba864a
+		summarizeBy: count
+		sourceColumn: CdrId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fecha
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e99b7adea4d25c64ad870b7a235e562a
+		summarizeBy: none
+		sourceColumn: Fecha
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dia
+		dataType: string
+		lineageTag: 70ea871fa6315f3096de0249014ef999
+		summarizeBy: none
+		sourceColumn: DiaTxt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hora
+		dataType: int64
+		formatString: 0
+		lineageTag: 1ae863d3ab2e53e09c5bc481c6fb8c71
+		summarizeBy: sum
+		sourceColumn: Hora
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiaSemana
+		dataType: int64
+		formatString: 0
+		lineageTag: 9fa4954592ed5869bba6ebc7f175bc17
+		summarizeBy: sum
+		sourceColumn: DiaSemana
+
+		annotation SummarizationSetBy = Automatic
+
+	column Telefono
+		dataType: string
+		lineageTag: 068f9835d0475ea6ace15c02d6cf8b68
+		summarizeBy: none
+		sourceColumn: Telefono
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cliente
+		dataType: string
+		lineageTag: 9283b6c11a345d3db90cf2c7c2059828
+		summarizeBy: none
+		sourceColumn: Cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tecnico
+		dataType: string
+		lineageTag: 635bb9867a76556e8333a156536fd2f1
+		summarizeBy: none
+		sourceColumn: Tecnico
+
+		annotation SummarizationSetBy = Automatic
+
+	column Confianza
+		dataType: string
+		lineageTag: 6237fcaaf1a353f19ed1b9aa1d841fa1
+		summarizeBy: none
+		sourceColumn: Confianza
+
+		annotation SummarizationSetBy = Automatic
+
+	column CalidadTransc
+		dataType: string
+		lineageTag: 6b8bd9a9cfda5e448a05ccfd06dff59e
+		summarizeBy: none
+		sourceColumn: CalidadTransc
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cuenta
+		dataType: string
+		lineageTag: 6655887fcd5b5a928d66a59f0af7b3b8
+		summarizeBy: none
+		sourceColumn: Cuenta
+
+		annotation SummarizationSetBy = Automatic
+
+	column Terminal
+		dataType: string
+		lineageTag: 610d6d211a99591792bce6f74941f5f3
+		summarizeBy: none
+		sourceColumn: Terminal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Direccion
+		dataType: string
+		lineageTag: 31117153488b5a83b5f8dac1bc341a05
+		summarizeBy: none
+		sourceColumn: Direccion
+
+		annotation SummarizationSetBy = Automatic
+
+	column Estado
+		dataType: string
+		lineageTag: 9590860bb62352ab89d1e9305d601a40
+		summarizeBy: none
+		sourceColumn: Estado
+
+		annotation SummarizationSetBy = Automatic
+
+	column UltimaAccion
+		dataType: string
+		lineageTag: dd57a16b3996594ab4b509a5e977e7a2
+		summarizeBy: none
+		sourceColumn: UltimaAccion
+
+		annotation SummarizationSetBy = Automatic
+
+	column DuracionLlamada
+		dataType: string
+		lineageTag: 451be01fb7b45c8e9b801bb07708510c
+		summarizeBy: none
+		sourceColumn: DuracionLlamada
+
+		annotation SummarizationSetBy = Automatic
+
+	column Espera
+		dataType: string
+		lineageTag: 7da1f829c2865de0b5031d2c361314df
+		summarizeBy: none
+		sourceColumn: Espera
+
+		annotation SummarizationSetBy = Automatic
+
+	column Categoria
+		dataType: string
+		lineageTag: e53b50bf4a27534f9b0513e1363ae0b4
+		summarizeBy: none
+		sourceColumn: Categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column Subcategoria
+		dataType: string
+		lineageTag: c53a1165ea8c502698e68fd68d8e934c
+		summarizeBy: none
+		sourceColumn: Subcategoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column Motivo
+		dataType: string
+		lineageTag: 82ac296d0c70554190ae33ba96065f31
+		summarizeBy: none
+		sourceColumn: Motivo
+
+		annotation SummarizationSetBy = Automatic
+
+	column HoraTxt
+		dataType: string
+		lineageTag: e6da399214515dc29dd07a25ed7b7acb
+		summarizeBy: none
+		sourceColumn: HoraTxt
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiaSemanaTxt
+		dataType: string
+		lineageTag: 0ac876942cc057639bb50c9b083eca69
+		summarizeBy: none
+		sourceColumn: DiaSemanaTxt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Turno
+		dataType: string
+		lineageTag: 2447ff70e02455f1930ceccd7d9bd135
+		summarizeBy: none
+		sourceColumn: Turno
+
+		annotation SummarizationSetBy = Automatic
+
+	column Distancia
+		dataType: double
+		lineageTag: 6c28b0a8c52f5aa8ac6a4d72d822f384
+		summarizeBy: sum
+		sourceColumn: Distancia
+
+		annotation SummarizationSetBy = Automatic
+
+	column DuracionSeg
+		dataType: int64
+		lineageTag: 943236f2d96e54ac870489f8694a179a
+		summarizeBy: sum
+		sourceColumn: DuracionSeg
+
+		annotation SummarizationSetBy = Automatic
+
+	column TurnosTec
+		dataType: int64
+		lineageTag: d9f19b1dd21d54b985674bb5ea3d685b
+		summarizeBy: sum
+		sourceColumn: TurnosTec
+
+		annotation SummarizationSetBy = Automatic
+
+	column SegTec
+		dataType: double
+		lineageTag: 088c2d0dd65f5b389f8ddd93ae353f4d
+		summarizeBy: sum
+		sourceColumn: SegTec
+
+		annotation SummarizationSetBy = Automatic
+
+	column TurnosCli
+		dataType: int64
+		lineageTag: 927338290c0657408046c952a891e26c
+		summarizeBy: sum
+		sourceColumn: TurnosCli
+
+		annotation SummarizationSetBy = Automatic
+
+	column SegCli
+		dataType: double
+		lineageTag: 267ad2ffba215bf9aa673346d22995e0
+		summarizeBy: sum
+		sourceColumn: SegCli
+
+		annotation SummarizationSetBy = Automatic
+
+	column EsBuzon
+		dataType: string
+		lineageTag: 5db7eb8f9f11552081deadeb99214a13
+		summarizeBy: none
+		sourceColumn: EsBuzon
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiaFecha
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: d83fdd5407f752bfa0df6e314f84f249
+		summarizeBy: none
+		sourceColumn: Dia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Semana
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: 2215049d8cf8531ba3733f1ffd197cf4
+		summarizeBy: none
+		sourceColumn: Semana
+
+		variation Variación
+			isDefault
+			relationship: d98e1afc-cd2f-4bce-9867-289ebd1d5acc
+			defaultHierarchy: LocalDateTable_9930d0a4-fc2e-485a-ba0f-edef15238934.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column SemanaTxt
+		dataType: string
+		lineageTag: 14aae2ec4242589995cfa08ca6fdb6d1
+		summarizeBy: none
+		sourceColumn: SemanaTxt
+
+		annotation SummarizationSetBy = Automatic
+
+	column CanalTecnico
+		dataType: string
+		lineageTag: ed68d8ab-489d-4f0d-8af8-c85f36fe045e
+		summarizeBy: none
+		sourceColumn: CanalTecnico
+
+		annotation SummarizationSetBy = Automatic
+
+	column CandidatoTecnico
+		dataType: string
+		lineageTag: 67693b49-fc3c-4b31-9035-a0d135bbea96
+		summarizeBy: none
+		sourceColumn: CandidatoTecnico
+
+		annotation SummarizationSetBy = Automatic
+
+	column CandidatoDist
+		dataType: double
+		lineageTag: de07f2a0-0f87-436e-82f7-778a41f29ba0
+		summarizeBy: sum
+		sourceColumn: CandidatoDist
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition V_A_ConversacionPBI = m
+		mode: import
+		source =
+				let
+				  Origen = Sql.Database("tu-servidor.database.windows.net", "tu-base"),
+				  #"Navegación 1" = Origen{[Schema = "dbo", Item = "V_A_ConversacionPBI"]}[Data]
+				in
+				  #"Navegación 1"
+
+		annotation PBI_ResultType = Table
+

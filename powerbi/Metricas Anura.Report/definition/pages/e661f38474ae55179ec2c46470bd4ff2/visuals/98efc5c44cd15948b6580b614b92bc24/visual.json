@@ -1,0 +1,128 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "98efc5c44cd15948b6580b614b92bc24",
+  "position": {
+    "x": 0,
+    "y": 541.88,
+    "z": 5000,
+    "height": 297.5,
+    "width": 945,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_ConversacionPBI"
+                    }
+                  },
+                  "Property": "Tecnico"
+                }
+              },
+              "queryRef": "V_A_ConversacionPBI.Tecnico",
+              "nativeQueryRef": "Tecnico",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_ConversacionPBI"
+                    }
+                  },
+                  "Property": "Turno"
+                }
+              },
+              "queryRef": "V_A_ConversacionPBI.Turno",
+              "nativeQueryRef": "Turno"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_ConversacionPBI"
+                    }
+                  },
+                  "Property": "Total Llamadas"
+                }
+              },
+              "queryRef": "V_A_ConversacionPBI.Total Llamadas",
+              "nativeQueryRef": "Total Llamadas",
+              "displayName": "Total llamadas"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_ConversacionPBI"
+                    }
+                  },
+                  "Property": "Llamadas"
+                }
+              },
+              "queryRef": "V_A_ConversacionPBI.Llamadas",
+              "nativeQueryRef": "Llamadas",
+              "displayName": "Llamadas"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "V_A_ConversacionPBI"
+                  }
+                },
+                "Property": "Llamadas"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

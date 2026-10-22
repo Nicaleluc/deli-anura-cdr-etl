@@ -15,3 +15,15 @@ __pycache__/
 tests/
 *.md
 !README.md
+
+# No hacen falta en el runtime de la Function
+powerbi/
+sql/
+tools/
+docs/
+.pytest_cache/
+
+# Datos personales locales (roster de voz)
+config/roster.json
+voiceprints.json
+audios/

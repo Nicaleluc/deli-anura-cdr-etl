@@ -1,0 +1,76 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "ab22db2045035f8abb93e8fbeea8c1df",
+  "position": {
+    "x": 0,
+    "y": 467.5,
+    "z": 3000,
+    "height": 361.25,
+    "width": 930,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "donutChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_ConversacionPBI"
+                    }
+                  },
+                  "Property": "DiaSemanaTxt"
+                }
+              },
+              "queryRef": "V_A_ConversacionPBI.DiaSemanaTxt",
+              "nativeQueryRef": "DiaSemanaTxt",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_ConversacionPBI"
+                    }
+                  },
+                  "Property": "Llamadas"
+                }
+              },
+              "queryRef": "V_A_ConversacionPBI.Llamadas",
+              "nativeQueryRef": "Llamadas",
+              "displayName": "Llamadas"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "V_A_ConversacionPBI"
+                  }
+                },
+                "Property": "Llamadas"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

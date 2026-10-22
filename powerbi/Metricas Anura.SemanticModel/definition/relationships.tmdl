@@ -1,0 +1,24 @@
+relationship 112bf0e0-fce2-59b1-bba8-fa1142e9591d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: V_A_ConversacionPBI.DiaFecha
+	toColumn: Calendario.Date
+
+relationship 6d233518-7704-57c9-a9f3-2625b0d51c11
+	joinOnDateBehavior: datePartOnly
+	fromColumn: V_A_LlamadaPerdida.DiaFecha
+	toColumn: Calendario.Date
+
+relationship d98e1afc-cd2f-4bce-9867-289ebd1d5acc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: V_A_ConversacionPBI.Semana
+	toColumn: LocalDateTable_9930d0a4-fc2e-485a-ba0f-edef15238934.Date
+
+relationship 31ac30f874e9487ab4c8d8dccccfa5e7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: V_A_PerdidaRacha.DiaFecha
+	toColumn: Calendario.Date
+
+relationship 77f58830cf404f28a1f735bdb6735202
+	fromColumn: V_A_PerdidaResp.RachaId
+	toColumn: V_A_PerdidaRacha.RachaId
+

@@ -1,0 +1,287 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "210829d1c2db4613b3bb980b6a67f39c",
+  "position": {
+    "x": 300.16172506738542,
+    "y": 63.39622641509434,
+    "z": 1000,
+    "height": 336.38814016172506,
+    "width": 1619.8382749326145,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_PerdidaRacha"
+                    }
+                  },
+                  "Property": "Telefono"
+                }
+              },
+              "queryRef": "V_A_PerdidaRacha.Telefono",
+              "nativeQueryRef": "Telefono"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_PerdidaRacha"
+                    }
+                  },
+                  "Property": "Cantidad"
+                }
+              },
+              "queryRef": "V_A_PerdidaRacha.Cantidad",
+              "nativeQueryRef": "Cantidad"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_PerdidaRacha"
+                    }
+                  },
+                  "Property": "PrimeraFecha"
+                }
+              },
+              "queryRef": "V_A_PerdidaRacha.PrimeraFecha",
+              "nativeQueryRef": "Primera Fecha",
+              "displayName": "Primera Fecha"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_PerdidaRacha"
+                    }
+                  },
+                  "Property": "Turno"
+                }
+              },
+              "queryRef": "V_A_PerdidaRacha.Turno",
+              "nativeQueryRef": "Turno"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_PerdidaRacha"
+                    }
+                  },
+                  "Property": "Devuelta"
+                }
+              },
+              "queryRef": "V_A_PerdidaRacha.Devuelta",
+              "nativeQueryRef": "Devuelta"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_PerdidaRacha"
+                    }
+                  },
+                  "Property": "TipoDevuelve"
+                }
+              },
+              "queryRef": "V_A_PerdidaRacha.TipoDevuelve",
+              "nativeQueryRef": "Tipo",
+              "displayName": "Tipo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_PerdidaRacha"
+                    }
+                  },
+                  "Property": "TecDevuelve"
+                }
+              },
+              "queryRef": "V_A_PerdidaRacha.TecDevuelve",
+              "nativeQueryRef": "Devolvio",
+              "displayName": "Devolvio"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_PerdidaRacha"
+                    }
+                  },
+                  "Property": "TecnicosTurno"
+                }
+              },
+              "queryRef": "V_A_PerdidaRacha.TecnicosTurno",
+              "nativeQueryRef": "Tecnicos",
+              "displayName": "Tecnicos"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "V_A_PerdidaRacha"
+                  }
+                },
+                "Property": "Cantidad"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "953.7057942090693D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "V_A_PerdidaRacha.TecnicosTurno"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "V_A_PerdidaRacha.Cantidad"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "V_A_PerdidaRacha.Telefono"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "V_A_PerdidaRacha.Devuelta"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "V_A_PerdidaRacha.Turno"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "V_A_PerdidaRacha.TipoDevuelve"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

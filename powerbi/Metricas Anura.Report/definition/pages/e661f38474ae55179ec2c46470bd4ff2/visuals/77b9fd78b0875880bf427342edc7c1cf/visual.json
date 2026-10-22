@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "77b9fd78b0875880bf427342edc7c1cf",
+  "position": {
+    "x": 1440,
+    "y": 85,
+    "z": 2000,
+    "height": 148.75,
+    "width": 450,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_LlamadaPerdida"
+                    }
+                  },
+                  "Property": "Devueltas"
+                }
+              },
+              "queryRef": "V_A_LlamadaPerdida.Devueltas",
+              "nativeQueryRef": "Devueltas",
+              "displayName": "Devueltas"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

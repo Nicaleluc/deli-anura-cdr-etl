@@ -1,0 +1,30 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "047b4b1dc3e751f8b142e5015e0011f8",
+  "displayName": "Perdidas",
+  "displayOption": "FitToPage",
+  "height": 850,
+  "width": 1920,
+  "pageBinding": {
+    "name": "41391b958920b1a3fe72",
+    "type": "Default",
+    "parameters": []
+  },
+  "visualInteractions": [
+    {
+      "source": "43d11b582f5e46b6be7f5b1bb172ded6",
+      "target": "107edbeefd5ff387e133",
+      "type": "DataFilter"
+    },
+    {
+      "source": "43d11b582f5e46b6be7f5b1bb172ded6",
+      "target": "1daa5bc928488fa611ef",
+      "type": "DataFilter"
+    },
+    {
+      "source": "43d11b582f5e46b6be7f5b1bb172ded6",
+      "target": "7fd52534aa5541ff848e9a7f41004902",
+      "type": "DataFilter"
+    }
+  ]
+}

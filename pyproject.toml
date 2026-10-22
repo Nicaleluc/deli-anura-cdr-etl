@@ -13,8 +13,22 @@ dependencies = [
     "pandas",
     "sqlalchemy",
     "pyodbc",
+    # Voz (cli/atribuir_voz): transcripcion + embeddings. torch es pesado.
+    "faster-whisper",
+    "speechbrain",
+    "soundfile",
+    "av",
+    "scipy",
+    "torch",
+    "torchaudio",
 ]
 
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["etl*", "config*", "cli*"]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

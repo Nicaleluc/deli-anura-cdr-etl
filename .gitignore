@@ -3,6 +3,10 @@
 .env.*
 !.env.template
 
+# Datos personales / locales (no versionar)
+config/roster.json
+voiceprints.json
+
 # Python
 __pycache__/
 *.pyc
@@ -10,14 +14,28 @@ __pycache__/
 *.pyd
 *.egg-info/
 deli-anura-cdr-etl.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 
 # Entornos virtuales
 .venv/
 venv/
 env/
+.venv*/
 
 # IDEs
 .vscode/
 .idea/
 .DS_Store
 Thumbs.db
+
+# Power BI Desktop local (cache binario + credenciales cifradas de maquina)
+**/.pbi/
+
+# Scratch local
+temp/
+*.log
+
+# Sesion del agente (tooling local)
+.opencode/

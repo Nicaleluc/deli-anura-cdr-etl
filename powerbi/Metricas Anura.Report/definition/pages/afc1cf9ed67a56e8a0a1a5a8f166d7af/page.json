@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "afc1cf9ed67a56e8a0a1a5a8f166d7af",
+  "displayName": "Horarios",
+  "displayOption": "FitToPage",
+  "height": 850,
+  "width": 1920
+}

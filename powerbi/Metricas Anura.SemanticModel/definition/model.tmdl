@@ -1,0 +1,24 @@
+model Model
+	culture: es-AR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-AR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["V_A_ConversacionPBI","V_A_LlamadaPerdida"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table V_A_ConversacionPBI
+ref table V_A_LlamadaPerdida
+ref table Calendario
+ref table DateTableTemplate_845b0898-bfaf-41f7-b62b-2247b01c0430
+ref table LocalDateTable_9930d0a4-fc2e-485a-ba0f-edef15238934
+ref table V_A_PerdidaRacha
+ref table V_A_PerdidaResp
+
+ref cultureInfo es-AR
+

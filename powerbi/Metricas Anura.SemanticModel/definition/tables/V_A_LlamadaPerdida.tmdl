@@ -1,0 +1,194 @@
+table V_A_LlamadaPerdida
+	lineageTag: dd9e416c5e0954e38736b298ee9ec988
+
+	measure 'Llamadas Perdidas' = COUNTROWS(V_A_LlamadaPerdida)
+		formatString: 0
+		lineageTag: f7accd0c2ab956c180160c82f0f667a1
+
+	measure Devueltas = CALCULATE(COUNTROWS(V_A_LlamadaPerdida), V_A_LlamadaPerdida[Devuelta] = "SI")
+		formatString: 0
+		lineageTag: 3c2e6a7efd1d5d3a828c4737602688d7
+
+	measure '% Devueltas' = DIVIDE([Devueltas], [Llamadas Perdidas])
+		formatString: #0%
+		lineageTag: 7c1fd7de64e357658199d5ff3d524f4b
+
+	column Id
+		dataType: int64
+		formatString: 0
+		lineageTag: 30a3855a283f5d40af030ca740611db1
+		summarizeBy: count
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Duracion
+		dataType: string
+		lineageTag: e15c804d7dab57f89d0beef2beff1f1b
+		summarizeBy: none
+		sourceColumn: Duracion
+
+		annotation SummarizationSetBy = Automatic
+
+	column Telefono
+		dataType: string
+		lineageTag: 81fff24c960f5b579cd35c8ecc5758df
+		summarizeBy: none
+		sourceColumn: Telefono
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cliente
+		dataType: string
+		lineageTag: 77a4fd4b823653938d816330943150e6
+		summarizeBy: none
+		sourceColumn: Cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nro_Destino
+		dataType: string
+		lineageTag: 3aece32f068d55cea22e3352ec7f72d3
+		summarizeBy: none
+		sourceColumn: Nro_Destino
+
+		annotation SummarizationSetBy = Automatic
+
+	column Resultado
+		dataType: string
+		lineageTag: 8701bc4cf3035f2da69a5709874c7ff8
+		summarizeBy: none
+		sourceColumn: Resultado
+
+		annotation SummarizationSetBy = Automatic
+
+	column DejoMensaje
+		dataType: string
+		lineageTag: 750d77d1d71e5847b740727a793e18da
+		summarizeBy: none
+		sourceColumn: DejoMensaje
+
+		annotation SummarizationSetBy = Automatic
+
+	column Estado
+		dataType: string
+		lineageTag: 4ade95b9b75e589e8e726dedaa8835de
+		summarizeBy: none
+		sourceColumn: Estado
+
+		annotation SummarizationSetBy = Automatic
+
+	column UltimaAccion
+		dataType: string
+		lineageTag: 0695fe12dbcf5bae8deaeccdd82e35c2
+		summarizeBy: none
+		sourceColumn: UltimaAccion
+
+		annotation SummarizationSetBy = Automatic
+
+	column DuracionConversacion
+		dataType: string
+		lineageTag: cf50ba46c54057a5b3e28d6e7b3a9d66
+		summarizeBy: none
+		sourceColumn: DuracionConversacion
+
+		annotation SummarizationSetBy = Automatic
+
+	column HoraTxt
+		dataType: string
+		lineageTag: 8535f90394235a1fb4c56b33fcf0a14e
+		summarizeBy: none
+		sourceColumn: HoraTxt
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiaSemanaTxt
+		dataType: string
+		lineageTag: 7d7f1cca71c65b1ab53901dd6cd1a18a
+		summarizeBy: none
+		sourceColumn: DiaSemanaTxt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Turno
+		dataType: string
+		lineageTag: b5dccc5e16e15e3c805595a2e0a8b667
+		summarizeBy: none
+		sourceColumn: Turno
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fecha
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: aa6ff9333d8a5805919ed65f8d053500
+		summarizeBy: none
+		sourceColumn: Fecha
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hora
+		dataType: int64
+		formatString: 0
+		lineageTag: 97bb7f696dce5d3eb371b085e10f3096
+		summarizeBy: none
+		sourceColumn: Hora
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiaSemana
+		dataType: int64
+		formatString: 0
+		lineageTag: 2b91a20ed5b350e4ae7c4a55f8873d71
+		summarizeBy: none
+		sourceColumn: DiaSemana
+
+		annotation SummarizationSetBy = Automatic
+
+	column Devuelta
+		dataType: string
+		lineageTag: 116b5dc4e34350f0ae883b77f05f29ad
+		summarizeBy: none
+		sourceColumn: Devuelta
+
+		annotation SummarizationSetBy = Automatic
+
+	column TipoDevuelta
+		dataType: string
+		lineageTag: 98d54eb7f391506a9d0db3fab68fdb79
+		summarizeBy: none
+		sourceColumn: TipoDevuelta
+
+		annotation SummarizationSetBy = Automatic
+
+	column FechaDevuelta
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f69b23b2e2ad5d459f54d6b229207d9f
+		summarizeBy: none
+		sourceColumn: FechaDevuelta
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiaFecha
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: f2d4c830d3465d41a74f38fbbf84e120
+		summarizeBy: none
+		sourceColumn: Dia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition V_A_LlamadaPerdida = m
+		mode: import
+		source =
+				let
+				  Origen = Sql.Database("tu-servidor.database.windows.net", "tu-base"),
+				  #"Navegación 1" = Origen{[Schema = "dbo", Item = "V_A_LlamadaPerdida"]}[Data]
+				in
+				  #"Navegación 1"
+
+		annotation PBI_ResultType = Table
+

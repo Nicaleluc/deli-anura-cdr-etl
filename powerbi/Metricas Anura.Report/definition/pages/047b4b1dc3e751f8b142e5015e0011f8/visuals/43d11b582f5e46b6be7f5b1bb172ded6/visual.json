@@ -1,0 +1,77 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "43d11b582f5e46b6be7f5b1bb172ded6",
+  "position": {
+    "x": 300.16172506738542,
+    "y": 399.78436657681937,
+    "z": 4000,
+    "height": 450,
+    "width": 809.91913746630723,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "pieChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_PerdidaResp"
+                    }
+                  },
+                  "Property": "TecnicoTurno"
+                }
+              },
+              "queryRef": "V_A_PerdidaResp.TecnicoTurno",
+              "nativeQueryRef": "Tecnico",
+              "active": true,
+              "displayName": "Tecnico"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_PerdidaResp"
+                    }
+                  },
+                  "Property": "No devueltas"
+                }
+              },
+              "queryRef": "V_A_PerdidaResp.No devueltas",
+              "nativeQueryRef": "No devueltas",
+              "displayName": "No devueltas"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "V_A_PerdidaResp"
+                  }
+                },
+                "Property": "No devueltas"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

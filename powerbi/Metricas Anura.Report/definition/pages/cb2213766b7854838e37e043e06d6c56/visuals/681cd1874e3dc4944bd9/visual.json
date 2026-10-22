@@ -1,0 +1,72 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "681cd1874e3dc4944bd9",
+  "position": {
+    "x": 0,
+    "y": 67.66,
+    "z": 2000,
+    "height": 782.34,
+    "width": 1919.4,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "boxandwhiskerwithpoints3B3DF5C11B683E5DB4E630DD7899B035",
+    "query": {
+      "queryState": {
+        "col_0": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_ConversacionPBI"
+                    }
+                  },
+                  "Property": "Tecnico"
+                }
+              },
+              "queryRef": "V_A_ConversacionPBI.Tecnico",
+              "nativeQueryRef": "Tecnico",
+              "active": true
+            }
+          ]
+        },
+        "col_2": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_ConversacionPBI"
+                    }
+                  },
+                  "Property": "DuracionSeg"
+                }
+              },
+              "queryRef": "V_A_ConversacionPBI.DuracionSeg",
+              "nativeQueryRef": "DuracionSeg"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "hiddenProps": [
+        {
+          "properties": {
+            "dataVersion": {
+              "expr": {
+                "Literal": {
+                  "Value": "'5.2.1.0'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -8,15 +8,19 @@ dinámicamente con ALTER TABLE), deduplica por FechaDT y vuelca con JsonData.
 """
 
 import json
+import re
 import unicodedata
 from datetime import datetime, timedelta
 from io import StringIO
 
 import pandas as pd
+from sqlalchemy import text
 
 from etl.conn.anura_client import AnuraClient
 from etl.conn.db import get_engine
 from etl.dominios.tickets.stats import ImportStats
+
+_TABLA_LLAMADA = "[dbo].[A_Llamada]"
 
 
 def main(stats=None):
@@ -26,7 +30,6 @@ def main(stats=None):
     engine = get_engine()
 
     create_table_sql = """
-    IF OBJECT_ID('[dbo].[A_Llamada]', 'U') IS NULL
     BEGIN
         CREATE TABLE [dbo].[A_Llamada] (
             Id INT IDENTITY(1,1) PRIMARY KEY,
@@ -36,10 +39,13 @@ def main(stats=None):
     """
 
     with engine.begin() as conn:
-        conn.exec_driver_sql(create_table_sql)
+        existe = conn.execute(
+            text("SELECT OBJECT_ID(:o, :t)"), {"o": _TABLA_LLAMADA, "t": "U"}
+        ).scalar()
+        if existe is None:
+            conn.exec_driver_sql(create_table_sql)
 
     validar_fecha_dt_sql = """
-    IF COL_LENGTH('[dbo].[A_Llamada]', 'FechaDT') IS NULL
     BEGIN
         ALTER TABLE [dbo].[A_Llamada]
         ADD FechaDT DATETIME2(3) NULL
@@ -47,7 +53,11 @@ def main(stats=None):
     """
 
     with engine.begin() as conn:
-        conn.exec_driver_sql(validar_fecha_dt_sql)
+        tiene = conn.execute(
+            text("SELECT COL_LENGTH(:o, :c)"), {"o": _TABLA_LLAMADA, "c": "FechaDT"}
+        ).scalar()
+        if tiene is None:
+            conn.exec_driver_sql(validar_fecha_dt_sql)
 
     # Nota 2026-08-27: FechaDT quedó como datetime (redondeo 0/3/7) en la v1,
     # no datetime2(3). El ALTER a datetime2 requiere ventana de mantenimiento
@@ -57,11 +67,6 @@ def main(stats=None):
     # haya drift 405→407. Ver ../deli-support-docs/integraciones/Anura.md §4 y fix_cols.py.
 
     create_index_sql = """
-    IF NOT EXISTS (
-        SELECT 1
-        FROM sys.indexes
-        WHERE name = 'IX_AnuraLlamadas_FechaDT'
-    )
     BEGIN
         CREATE INDEX IX_AnuraLlamadas_FechaDT
         ON [dbo].[A_Llamada](FechaDT)
@@ -69,7 +74,12 @@ def main(stats=None):
     """
 
     with engine.begin() as conn:
-        conn.exec_driver_sql(create_index_sql)
+        idx = conn.execute(
+            text("SELECT 1 FROM sys.indexes WHERE name = :n"),
+            {"n": "IX_AnuraLlamadas_FechaDT"},
+        ).scalar()
+        if idx is None:
+            conn.exec_driver_sql(create_index_sql)
 
     query_fecha = """
     SELECT MAX(FechaDT) AS UltimaFecha
@@ -123,10 +133,15 @@ def main(stats=None):
             ",": "",
             ";": "",
             "'": "",
-            "\"": ""
+            "\"": "",
+            "[": "",
+            "]": "",
         }
         for old, new in replacements.items():
             col = col.replace(old, new)
+        # Whitelist dura: el nombre va dentro de un ALTER TABLE (DDL). Parámetros
+        # no cubren identificadores, así que solo permitimos [A-Za-z0-9_].
+        col = re.sub(r"[^A-Za-z0-9_]", "_", col)
         return col[:120]
 
     df.columns = [normalize_column(c) for c in df.columns]
@@ -155,12 +170,13 @@ def main(stats=None):
 
     with engine.begin() as conn:
         existing_cols = pd.read_sql(
-            """
+            text("""
             SELECT COLUMN_NAME
             FROM INFORMATION_SCHEMA.COLUMNS
-            WHERE TABLE_NAME = 'A_Llamada'
-            """,
-            conn
+            WHERE TABLE_NAME = :t
+            """),
+            conn,
+            params={"t": "A_Llamada"},
         )["COLUMN_NAME"].tolist()
 
         for col in df.columns:

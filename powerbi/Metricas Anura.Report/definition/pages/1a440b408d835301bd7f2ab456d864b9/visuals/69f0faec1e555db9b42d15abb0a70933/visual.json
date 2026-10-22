@@ -1,0 +1,96 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "69f0faec1e555db9b42d15abb0a70933",
+  "position": {
+    "x": 0,
+    "y": 467.5,
+    "z": 3000,
+    "height": 361.25,
+    "width": 1920,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_ConversacionPBI"
+                    }
+                  },
+                  "Property": "Tecnico"
+                }
+              },
+              "queryRef": "V_A_ConversacionPBI.Tecnico",
+              "nativeQueryRef": "Tecnico"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_ConversacionPBI"
+                    }
+                  },
+                  "Property": "CalidadTransc"
+                }
+              },
+              "queryRef": "V_A_ConversacionPBI.CalidadTransc",
+              "nativeQueryRef": "CalidadTransc"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_ConversacionPBI"
+                    }
+                  },
+                  "Property": "Confianza"
+                }
+              },
+              "queryRef": "V_A_ConversacionPBI.Confianza",
+              "nativeQueryRef": "Confianza"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_ConversacionPBI"
+                    }
+                  },
+                  "Property": "Llamadas"
+                }
+              },
+              "queryRef": "V_A_ConversacionPBI.Llamadas",
+              "nativeQueryRef": "Llamadas",
+              "displayName": "Llamadas"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_ConversacionPBI"
+                    }
+                  },
+                  "Property": "% ALTA"
+                }
+              },
+              "queryRef": "V_A_ConversacionPBI.% ALTA",
+              "nativeQueryRef": "% ALTA",
+              "displayName": "% ALTA"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -92,3 +92,58 @@ class AnuraClient:
             },
         )
         return response.text
+
+    def gcapi(self, method, params, access_token=None):
+        """Llamada JSON-RPC generica a GCAPI (verificado: system.listMethods
+        devuelve 344 metodos). params es lista posicional."""
+        token = access_token or self.get_access_token()
+
+        response = _request(
+            "POST",
+            GCAPI_URL,
+            headers={
+                "Authorization": f"Bearer {token}",
+                "Content-Type": "application/json",
+            },
+            json={
+                "id": 1,
+                "method": method,
+                "params": params,
+            },
+        )
+        payload = response.json()
+        if "error" in payload:
+            raise RuntimeError(
+                f"GCAPI {method}: {payload['error'].get('msg', payload['error'])}"
+            )
+        return payload.get("result")
+
+    def get_cdrs_day(self, dia_text, access_token=None, max_paginas=20):
+        """CDRs de un dia ('YYYY-MM-DD') con id/wasRecorded/calling/dialTime.
+
+        El 3er arg de getCdrs es NUMERO DE PAGINA, no flag (verificado
+        2026-10-05: p1=487 filas, p2=529 con 118 ids nuevos, union=613 =
+        filas del ExportCdrs del mismo dia). Sin paginar se pierden ~20 %
+        de las piernas (entre ellas MULTIDIAL grabadas). Recorre paginas
+        hasta que una no aporta ids nuevos."""
+        vistos = set()
+        out = []
+        for pagina in range(1, max_paginas + 1):
+            lote = self.gcapi(
+                "AdminService.getCdrs", [dia_text, dia_text, pagina],
+                access_token,
+            ) or []
+            nuevos = [c for c in lote if c.get("id") not in vistos]
+            for c in nuevos:
+                vistos.add(c.get("id"))
+            out.extend(nuevos)
+            if not nuevos:
+                break
+        return out
+
+    def get_recording_urls(self, cdr_id, access_token=None):
+        """Lista [{mimeType, URL}] (ogg/mpeg/wav). URLs firmadas: vencen en
+        30 minutos, descargar en el acto."""
+        return self.gcapi(
+            "AdminService.getRecordingURL", [cdr_id], access_token
+        ) or []

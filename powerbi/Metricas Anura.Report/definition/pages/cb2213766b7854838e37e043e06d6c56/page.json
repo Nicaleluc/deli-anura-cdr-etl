@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "cb2213766b7854838e37e043e06d6c56",
+  "displayName": "Duraciones",
+  "displayOption": "FitToPage",
+  "height": 850,
+  "width": 1920
+}

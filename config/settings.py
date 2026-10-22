@@ -59,3 +59,42 @@ if _faltantes:
         "Faltan variables en .env (copiar .env.template a .env y completar): "
         + ", ".join(_faltantes)
     )
+
+# VOZ (etl/dominios/voz + cli/atribuir_voz). Todas OPCIONALES con default:
+# nunca rompen el fail-fast de arriba ni el ETL de CDRs.
+# Raiz donde se guardan los .ogg por dia (<root>/YYYY-MM-DD/cdr....ogg).
+# Default: carpeta audios/ del pack en el repo hermano deli-support-docs.
+_REPO_HERMANO = _BASE_DIR.parent / "deli-support-docs"
+VOZ_AUDIO_ROOT = _get(
+    "VOZ_AUDIO_ROOT",
+    str(_REPO_HERMANO / "integraciones" / "anura-voice-pack" / "audios"),
+)
+# voiceprints.json (plantillas iniciales) del pack hermano.
+VOZ_VOICEPRINTS_JSON = _get(
+    "VOZ_VOICEPRINTS_JSON",
+    str(_REPO_HERMANO / "integraciones" / "anura-voice-pack" / "voiceprints.json"),
+)
+# Roster de técnicos (nombres/umbrales/alias): dato personal, NO se versiona.
+# Copiar config/roster.example.json a config/roster.json (ver modulos voz.roster).
+VOZ_ROSTER_JSON = _get(
+    "VOZ_ROSTER_JSON",
+    str(_BASE_DIR / "config" / "roster.json"),
+)
+VOZ_WHISPER_MODEL = _get("VOZ_WHISPER_MODEL", "small")
+VOZ_WHISPER_BEAM = int(_get("VOZ_WHISPER_BEAM", "5") or 5)
+VOZ_MODELO_VERSION = _get("VOZ_MODELO_VERSION", "ecapa-voxceleb-v1")
+# Banda de rechazo del voice-ID: si el tecnico mas cercano esta a distancia
+# > este valor, NO se le atribuye (queda 'Sin identificar'). Sin esto, una
+# llamada de un tecnico sin plantilla se le asigna al mas parecido y se
+# inventa un nombre. Medido: aciertos <=0.35, falsos 0.42-0.57 (19-09).
+VOZ_UMBRAL_RECHAZO = float(_get("VOZ_UMBRAL_RECHAZO", "0.40") or 0.40)
+# Cola de revision por proximidad: si el tecnico sin cerrar mas cercano esta
+# a <= este valor, se guarda como CANDIDATO (V_A_ColaCandidatos) para que un
+# humano lo escuche, en vez de tirarlo a 'desconocido' a ciegas. No atribuye.
+VOZ_UMBRAL_CANDIDATO = float(_get("VOZ_UMBRAL_CANDIDATO", "0.60") or 0.60)
+VOZ_DIAS_ATRAS = int(_get("VOZ_DIAS_ATRAS", "7") or 7)
+VOZ_LIMITE = int(_get("VOZ_LIMITE", "50") or 50)
+
+# ANALISIS de llamadas (resumen + categoria) via Ollama local. OPCIONALES.
+OLLAMA_URL = _get("OLLAMA_URL", "http://localhost:11434")
+OLLAMA_MODEL = _get("OLLAMA_MODEL", "qwen2.5:7b-instruct-q4_K_M")

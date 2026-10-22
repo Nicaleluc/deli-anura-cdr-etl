@@ -4,3 +4,14 @@ requests>=2.31,<3
 pandas>=2.0,<4
 sqlalchemy>=2.0,<3
 pyodbc>=5.0,<6
+
+# Voz: transcripcion (faster-whisper) + embeddings (speechbrain/ECAPA).
+# torch es pesado (~200 MB CPU); necesario para speechbrain.
+# Modelos (whisper, ecapa) se descargan de HuggingFace en la 1ra corrida.
+faster-whisper>=1.0,<2
+speechbrain>=1.0,<2
+soundfile>=0.12,<1
+av>=11,<16
+scipy>=1.11,<2
+torch>=2.0,<3
+torchaudio>=2.0,<3

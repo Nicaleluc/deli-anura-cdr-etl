@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Metricas Anura"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "ecae30db-760e-4257-b44d-13343d700f4b"
+  }
+}

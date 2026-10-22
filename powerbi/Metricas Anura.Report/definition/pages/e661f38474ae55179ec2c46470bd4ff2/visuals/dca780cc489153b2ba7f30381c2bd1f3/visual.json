@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "dca780cc489153b2ba7f30381c2bd1f3",
+  "position": {
+    "x": 480,
+    "y": 85,
+    "z": 4000,
+    "height": 148.75,
+    "width": 450,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_ConversacionPBI"
+                    }
+                  },
+                  "Property": "Minutos"
+                }
+              },
+              "queryRef": "V_A_ConversacionPBI.Minutos",
+              "nativeQueryRef": "Minutos",
+              "displayName": "Minutos",
+              "format": "0.00"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,16 @@
+table Calendario
+	lineageTag: 7c053b5400c557b081d2c5bcd5ce6a7a
+
+	column Date
+		formatString: General Date
+		lineageTag: 8286b1a9ae325c2cbdab3ff151d918a0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendario = calculated
+		mode: import
+		source = CALENDAR(DATE(2025, 1, 1), DATE(2029, 12, 31))
+

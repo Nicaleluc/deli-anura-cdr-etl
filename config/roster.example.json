@@ -1,0 +1,8 @@
+{
+  "umbrales": {
+    "Tecnico Ejemplo": 0.55,
+    "Tecnica Ejemplo": 0.50,
+    "Coordinador Ejemplo": 0.60
+  },
+  "excluidos": ["Tecnica Ejemplo"]
+}

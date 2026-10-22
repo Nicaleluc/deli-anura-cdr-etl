@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "acc9ddf9a0875b2cb85a1404781cfb0b",
+  "position": {
+    "x": 960,
+    "y": 85,
+    "z": 3000,
+    "height": 148.75,
+    "width": 450,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "V_A_LlamadaPerdida"
+                    }
+                  },
+                  "Property": "Llamadas Perdidas"
+                }
+              },
+              "queryRef": "V_A_LlamadaPerdida.Llamadas Perdidas",
+              "nativeQueryRef": "Llamadas Perdidas",
+              "displayName": "Llamadas Perdidas"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
