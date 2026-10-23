@@ -64,7 +64,7 @@ def main(stats=None):
     # (DROP INDEX + ALTER COLUMN bloquea 5+ min en 162k filas). No se hace acá
     # para no colgar el import incremental. La idempotencia ahora se garantiza
     # con el filtro df[FechaDT > ultima_fecha] abajo, que descarta viejos aunque
-    # haya drift 405→407. Ver ../deli-support-docs/integraciones/Anura.md §4 y fix_cols.py.
+    # haya drift 405→407. Ver deli-support-docs/integraciones/Anura.md §4 y fix_cols.py.
 
     create_index_sql = """
     BEGIN

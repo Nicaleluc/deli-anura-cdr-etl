@@ -64,7 +64,16 @@ if _faltantes:
 # nunca rompen el fail-fast de arriba ni el ETL de CDRs.
 # Raiz donde se guardan los .ogg por dia (<root>/YYYY-MM-DD/cdr....ogg).
 # Default: carpeta audios/ del pack en el repo hermano deli-support-docs.
-_REPO_HERMANO = _BASE_DIR.parent / "deli-support-docs"
+# Ese repo puede estar al lado de este (clon standalone) o dos niveles arriba
+# (cuando este repo vive dentro de `deli/`): se busca en ambos lugares.
+def _buscar_docs(nombre="deli-support-docs"):
+    for base in (_BASE_DIR.parent, _BASE_DIR.parent.parent):
+        if (base / nombre).is_dir():
+            return base / nombre
+    return _BASE_DIR.parent / nombre
+
+
+_REPO_HERMANO = _buscar_docs()
 VOZ_AUDIO_ROOT = _get(
     "VOZ_AUDIO_ROOT",
     str(_REPO_HERMANO / "integraciones" / "anura-voice-pack" / "audios"),
